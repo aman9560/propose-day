@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>propose day</title>
+
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+    background: url("bg.png") center / cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .overlay {
+    background: rgba(255,255,255,0.88);
+    padding: 30px;
+    border-radius: 18px;
+    max-width: 700px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .para {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+
+  .gifts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .gift {
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .gift-inner {
+    width: 140px;
+    height: 160px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    margin: auto;
+  }
+
+  .gift.flipped .gift-inner {
+    transform: rotateY(180deg);
+  }
+
+  .gift-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border: 2px dashed #aaa;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #fff;
+    font-size: 14px;
+  }
+
+  .gift-front img {
+    width: 70px;
+  }
+
+  .gift-back {
+    transform: rotateY(180deg);
+  }
+
+  /* MORSE FOCUS OVERLAY */
+  .focus {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .focus-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    max-width: 420px;
+    text-align: center;
+    animation: zoom 0.5s ease;
+  }
+
+  .instruction {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-bottom: 10px;
+  }
+
+  .morse {
+    font-family: monospace;
+    font-size: 14px;
+    margin-bottom: 14px;
+    word-break: break-word;
+  }
+
+  .focus-box img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  @keyframes zoom {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+  <div class="para">
+    didnt really know what to do on propose day then I remembered this idea which my friend did for a girl in 6th grade, he got rejected for it but now when I think about it, it was really cute and since u are lazy but curious, I was like let me do smth where she has to do some mehnat, so yea sorry am not there with you to sit on one knee and pretend to tie my shoe instead of proposing you and asking u for coffee, but this is the best I can do today
+  </div>
+
+  <div class="gifts">
+    <!-- BOX 1 -->
+    <div class="gift" onclick="flip(this)">
+      <div class="gift-inner">
+        <div class="gift-face gift-front">
+          <img src="gift.png">
+        </div>
+        <div class="gift-face gift-back">
+          nothing here miss
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX 2 -->
+    <div class="gift" onclick="flip(this)">
+      <div class="gift-inner">
+        <div class="gift-face gift-front">
+          <img src="gift.png">
+        </div>
+        <div class="gift-face gift-back">
+          still nothing lol
+        </div>
+      </div>
+    </div>
+
+    <!-- BOX 3 -->
+    <div class="gift" onclick="reveal()">
+      <div class="gift-inner">
+        <div class="gift-face gift-front">
+          <img src="gift.png">
+        </div>
+        <div class="gift-face gift-back">
+          👀
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MORSE REVEAL -->
+<div class="focus" id="focus">
+  <div class="focus-box">
+
+    <div class="instruction">
+      its 4 words, separated with "/" and there are 11 letters and each letter is separated with a comma "," its morse code
+    </div>
+
+    <div class="morse">
+      .. / .-.. , .. , -.- , . / -.-- , --- , ..- / .-.. , --- , .-..
+    </div>
+
+    <img src="morse.png">
+  </div>
+</div>
+
+<script>
+  function flip(el) {
+    el.classList.toggle("flipped");
+  }
+
+  function reveal() {
+    document.getElementById("focus").style.display = "flex";
+  }
+</script>
+
+</body>
+</html>
